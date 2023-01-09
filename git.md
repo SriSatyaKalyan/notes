@@ -20,7 +20,7 @@ Describe your changes in imperative/past mood and stick to it, e.g. **` "make ch
 
 ` git commit amend ` is used to redo the previous commit using the **` --amend `** option.
 
-****Ignoring Files****: 
+***Ignoring Files***: 
 We can tell Git which files and directories to ignore in a given repository using a **` .gitignore `** file. This is useful for files/folders we never want to commit, including:
 * Secrets, API keys, credentials, etc.
 * Operating System files (.DS_Store on Mac)
@@ -43,5 +43,14 @@ When switching branches with unstaged changes, git checks for the changes being 
 
 ` git branch -m <new-branch-name> ` command helps us rename a branch. But we would have to switch to that branch first.
 
+***Merging***: We have to remember two things:
+* We merge branches, not specific commits
+* We always merge to the current HEAD branch
 
+To merge, follow the basic steps:
+1. Switch to or checkout the branch you want to merge the changes into (the receiving branch)
+2. Using the **` git merge `** command to merge changes from a specific branch into the current branch
 
+This is called a fast-forward merge. This can be performed when there is a direct linear path from the source branch to the target branch. In a fast-forward merge, git simply moves the source branch pointer to the target branch pointer without creating an extra merge commit.
+
+When we try to merge our branch into a master which has other *` non-conflicting `* changes added to it, git performs a **` merge commit `** wherein we end up with a new commit on the master branch. Git will prompt you for a message.
