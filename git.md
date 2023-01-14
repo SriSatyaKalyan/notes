@@ -78,3 +78,22 @@ git diff + git diff --staged = git diff HEAD
 ` git diff HEAD [filename] ` and ` git diff --staged [filename] ` will be Diff-ing specific files .
 
 ` git diff [branch1] [branch2] ` will list the changes between the tips of the branch1 and branch2. The order matters.
+
+***Stashing***: Git provides an easy way of stashing these uncommitted changes so that we can return to them later, without having to make unnecessary commits.
+
+` git stash ` (or ` git stash save `) will take all uncommitted changes (staged and unstaged) and stash them, reverting the changes in your working copy.
+
+` git stash pop ` command is used to remove the most recently stashed changes in your stash and re-apply them to your working copy. The stash is cleared here. 
+
+` git stash apply ` command applies to the current branch whatever is stashed away, without removing it from the stash. This can be useful if you want to apply stashed changes to multiple branches. The stash still has the changes.
+
+**Stashing Multiple Times**: One can add multiple stashes into the stack of stashes. They will all be stashed in the order that they have been added.
+
+` git stash list ` command lists the order in which the stashes have been performed. ` git stash apply stash@{[number_of_stash]}` applies the stash which has numbered. 
+
+` git drop stash@{2} ` deletes the stash numbered 2. ` git stash clear ` clears out all the stashes. 
+
+
+
+
+
