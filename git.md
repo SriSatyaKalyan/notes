@@ -65,3 +65,16 @@ The content from the branch you are trying to merge from is displayed **` betwee
 
 ` git diff ` command is used to view changes between commits, branches, files, working directory, etc. We often use this alongside other commands like ` git status ` and ` git log `, to get a better picture of a repo and how it has changed over time.
 
+Without additional options, ` git diff ` lists all the changes in our working directory that are NOT staged for the next commit. Shows ***unstaged*** changes.
+
+` git diff HEAD ` lists ***ALL*** changes in the working tree since your last commit. Shows ***changed*** and ***unchanged*** changes since HEAD.
+
+` git diff --staged ` or ` git diff --cached ` will list the changes between the staging area and our last commit. (Shows what will be included in the commit if ` git commit ` command is ran right now)
+
+```
+git diff + git diff --staged = git diff HEAD
+```
+
+` git diff HEAD [filename] ` and ` git diff --staged [filename] ` will be Diff-ing specific files .
+
+` git diff [branch1] [branch2] ` will list the changes between the tips of the branch1 and branch2. The order matters.
