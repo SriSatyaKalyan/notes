@@ -54,3 +54,14 @@ To merge, follow the basic steps:
 This is called a fast-forward merge. This can be performed when there is a direct linear path from the source branch to the target branch. In a fast-forward merge, git simply moves the source branch pointer to the target branch pointer without creating an extra merge commit.
 
 When we try to merge our branch into a master which has other *` non-conflicting `* changes added to it, git performs a **` merge commit `** wherein we end up with a new commit on the master branch. Git will prompt you for a message.
+
+***Resolving Conflicts***: Whenever you encounter merge conflicts, follow the below steps:
+1. Open up the file(s) with merge conflicts
+2. Edit the file(s) to remove the conflicts. Decide which branch's content you want to keep in each conflicts. Or keep the content from both.
+3. Remove the conflict "markers" in the document
+4. Add your changes and then make a commit!
+
+The content from the branch you are trying to merge from is displayed **` between the ======= and >>>>>>> symbols`**. 
+
+` git diff ` command is used to view changes between commits, branches, files, working directory, etc. We often use this alongside other commands like ` git status ` and ` git log `, to get a better picture of a repo and how it has changed over time.
+
