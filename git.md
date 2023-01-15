@@ -93,7 +93,24 @@ git diff + git diff --staged = git diff HEAD
 
 ` git drop stash@{2} ` deletes the stash numbered 2. ` git stash clear ` clears out all the stashes. 
 
+***Undoing Changes & Time Traveling***: 
 
+` git checkout commit <commit-hash>` command is used to view a previous commit. ` git switch master ` takes us back to where the HEAD used to be.
 
+` git checkout ` supports a syntax for referencing previous commits relative to a HEAD or a particular commit. 
+* ***HEAD~1*** refers to the commit before HEAD (parent)
+* ***HEAD~2*** refers to 2 commits before HEAD (grandparent)
 
+` git switch - ` will take us whichever branch which we were on before we switched HEAD to.
 
+***Discarding Changes***: 
+` git checkout HEAD <filename> ` is used to discard any changes in that file, reverting back to the HEAD. Another way of achieving the same result is by using the ` git checkout -- <filename> ` command.
+
+` git restore ` command is used to undoing changes. ` git restore ` and ` git switch ` are used as alternatives to some of the uses of ` checkout `.
+
+To restore the file to the contents in the HEAD, we use `git restore <filename> `. ` git restore --source HEAD~1 <filename> ` will restore the contents of the file to its state from the commit prior to HEAD. We can also a particular commit hash as the source. 
+
+NOTE: The above command is not "undoable". If we have uncommitted changes in the file, they will be lost!
+
+***Unstaging Files with Restore***: If we have accidentally added a file to the staging area with ` git add ` command but we don't wish to include it in the next commit, we can use ` git restore ` to remove it from staging. 
+The command would be ` git restore --staged <filename> `.
