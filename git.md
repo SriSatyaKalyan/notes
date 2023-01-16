@@ -114,3 +114,11 @@ NOTE: The above command is not "undoable". If we have uncommitted changes in the
 
 ***Unstaging Files with Restore***: If we have accidentally added a file to the staging area with ` git add ` command but we don't wish to include it in the next commit, we can use ` git restore ` to remove it from staging. 
 The command would be ` git restore --staged <filename> `.
+
+` git reset <commit-hash> ` command will reset the repo back to a specific commit. The commits are gone but the changes made during those commits stay. 
+
+` git reset --hard <commit-hash> ` is a hard reset command which will delete the commit and also undo the changes made starting from that commit.
+
+` git revert ` is similar to ` git reset ` in that they both "undo" changes, but they accomplish it in different ways. ` git reset ` actually moves the branch pointer backwards, eliminating the commits. ` git revert ` instead creates a brand new commit which reverses/undoes the changes from a commit. Because it results in a new commit, a prompt requesitng a commit message has to be handled.
+
+` git revert ` is used when we want to reverse some commits that other people already have on their machines. 
