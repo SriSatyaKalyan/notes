@@ -1,6 +1,5 @@
 # Git & GitHub
 
-
 ***Git*** is a Version Control System that runs locally on your machine. No need of internet to use it. ***GitHub*** is a service that hosts Git repositories in the cloud and makes it easier to collaborate with other people. Online place to share works that is done using Git.
 
 ## Git
@@ -172,20 +171,24 @@ When we clone a git repo from Github which has multiple branches, we only get th
 
 `git fetch <remote>` command fetches branches and history from a specific remote repository. It only updates remote tracking branches. `git fetch origin` would fetch all changes from the origin remote repo. If not specified as in the command `git fetch`, `<remote>` defaults to `origin`.
 
+`git pull <remote> <master>` would fetch the latest information from the origin's master branch and merge those changes into our current branch. Just like `git merge`, it matters WHERE we run this command from. Whatever branch we run it from is where the changes will be merged into.
+
+```
+git pull = git fetch + git merge
+```
+
+If we run `git pull` without specifying a particular remote or branch to pull from, git assumes the following:
+* remote will default to origin
+* branch will default to whatever tracking connection is configured for your current branch
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+| git fetch      | git pull |
+| ---        |    --- |
+| Gets changes from remote branch(es)  | Gets changes from remote branch(es) |
+| Updates the remote tracking branches with the new changes   | Updates the current branch with the new changes, merging them in         |
+| Does not merge changes onto your current HEAD branch   | Can result in merge conflicts  |
+| Safe to do anytime | Not recommended if you have uncommitted changes         |
+|  |  |
 
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
