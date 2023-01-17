@@ -1,6 +1,9 @@
 # Git & GitHub
 
-**Git** is a Version Control System that runs locally on your machine. No need of internet to use it. **GitHub** is a service that hosts Git repositories in the cloud and makes it easier to collaborate with other people. Online place to share works that is done using Git.
+
+***Git*** is a Version Control System that runs locally on your machine. No need of internet to use it. ***GitHub*** is a service that hosts Git repositories in the cloud and makes it easier to collaborate with other people. Online place to share works that is done using Git.
+
+## Git
 
 ` git status ` provides the status of the git repo.
 
@@ -122,3 +125,47 @@ The command would be ` git restore --staged <filename> `.
 ` git revert ` is similar to ` git reset ` in that they both "undo" changes, but they accomplish it in different ways. ` git reset ` actually moves the branch pointer backwards, eliminating the commits. ` git revert ` instead creates a brand new commit which reverses/undoes the changes from a commit. Because it results in a new commit, a prompt requesitng a commit message has to be handled.
 
 ` git revert ` is used when we want to reverse some commits that other people already have on their machines. 
+
+## GitHub
+
+***Remote***: Before we can push anything to GitHub, we need to tell Git about our remote repository (destination) on Github which we need to setup. In Git, we refer to these "destinations" as remotes. Each remote is simply a URL where a hosted repository lives.
+
+A remote is two things: URL and a label. To add a new remote, we need to provide both to Git. 
+```
+git remote add <label> <url> 
+```
+
+So, here we are associating the **` label `** with the **` url `**. And hereonwards, whenever we refer to the label, we are actually referring to the url
+
+**`Origin`** is a conventional Git remote name, but it is not special. It's just a name for a URL. We can change it.
+
+To rename a remote, ` git remote rename <old> <new> ` can be used. 
+To delete a remote, ` git remote remove <name> `
+
+Now, we understand better ` git push <remote> <branch> `. Here we are pushing the branch into the remote, and therefore, we are pushing the branch into the url associated with the remote.
+
+While we often push our local branch up to a remote branch of the same name, we can also push different branches up. This is with the command
+` git push <remote> <local-branch>:<remote-branch> ` 
+
+To push our local pancake branch up to a remote branch called waffle, we could do: ` git push origin pancake:waffle `
+
+**`-u`**: The ` -u ` allows us to set the **`upstream`** of the branch we're pushing. This can be thought of as a link connecting our local branch to a branch on Github. Running ` git push -u origin master ` sets the upstream of the local master branch so that it tracks the master branch on the origin repo. So, after setting this upstream, running `git push` in the master branch would push the changes up to the remote master branch
+
+`git remote -v` command tells us which remote branches the local branch is **`fetch`**-ing from and **`push`**-ing into.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Related links
+* https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
