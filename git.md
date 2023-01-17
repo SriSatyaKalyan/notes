@@ -153,6 +153,26 @@ To push our local pancake branch up to a remote branch called waffle, we could d
 
 `git remote -v` command tells us which remote branches the local branch is **`fetch`**-ing from and **`push`**-ing into.
 
+`git branch -r` lists the remote branches and points out which remote branch the HEAD is pointing to. 
+
+**`Remote-tracking branches`** are references to the state of remote branches. They're local references that you can't move; Git moves them for you whenever you do any network communication, to make sure they accurately represent the state of the remote repository.
+* They follow this pattern **`<remote>/<branch>`**
+* **`origin/master`** references the state of the master branch on the remote repo named origin.
+
+That is the reason we see the below reference to the remote-tracking branch as below when we make commits locally but have not pushed the changes to remote.
+```
+Your branch is ahead of 'origin/master' by 2 commits. (use git push to publish your local commits)
+```
+
+To understand how the project looked like when we last interacted with the remote, we use ` git checkout origin/master ` command
+
+When we clone a git repo from Github which has multiple branches, we only get the reference to the origin/master remote. To access other branches, we can use ` git switch <remote-branch-name> ` which creates a new local branch from the remote branch of the same name. 
+
+**`Fetching`** allows us to download changes from a remote repo to our local repo, BUT those changes will not be automatically integrated into our working files. It lets one see what others have been working on, without having to merge those changes into the local repo. 
+
+`git fetch <remote>` command fetches branches and history from a specific remote repository. It only updates remote tracking branches. `git fetch origin` would fetch all changes from the origin remote repo. If not specified as in the command `git fetch`, `<remote>` defaults to `origin`.
+
+
 
 
 
