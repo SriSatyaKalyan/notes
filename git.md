@@ -190,5 +190,61 @@ If we run `git pull` without specifying a particular remote or branch to pull fr
 | Safe to do anytime | Not recommended if you have uncommitted changes         |
 |  |  |
 
+**`README`** If you put README in the root of your project, Github will recognize it and automatically display it on the repo's home page. These are Markdown files, ending with the .md extension.
+
+**`GITHUB Gists`** are a simple way to share code snippets and useful fragments wit others. Gists are much easier to create, but offer far fewer features than a typical Github repository.
+
+**`Github Pages`** is a hosting service for static webpages, so it deos not support server-side code like Python, Ruby, or Node. Just HTML/CSS/JS.
+* **User site** We get one user site per Github account. This is where we can host a portfolio site or some form of personal website. The default url is based on our Github username, following the pattern `username.github.io` though we can change this
+* **Project site** We get unlimited project sites. Each Github repo can have a corresponding hosted website. It's as simple as telling Github which specific branch contains the web content. The default urls follow the pattern `username.github.io/repo-name`
+
+### Workflows:
+
+**Centralized Workflow** Everyone works on the master/main branch aka the most basic workflow possible. The simples collaborative workflow is to have everyone work on the master branch (or main, or any other SINGLE branch)
+
+**Feature Branches** Rather than working on master/main, all new development should be done on separate branches!
+* Treat master/main branch as the official project history
+* Multiple teammates can collaborate on a single feature and share code back and forth without polluting the main branch
+* Main branch won't contain broken code (unless someone messes up)
+
+**`Pull Requests`** allow developers to alert team-members to new work that needs to be reviewed. They provide a mechanism to approve or reject the work on a given branch. They also help facilitate discussion and feedback on specific commits. 
+
+#### Workflow
+1. Do some work locally on a feature branch
+2. Push up the feature branch on Github
+3. Open a pull request using the featuer branch just pushed up to Github
+4. Wait for PR to be approved and merged. Start a discussion on PR (depending on team structure)
+
+* Switch to the branch in question. Merge in master and resolve the conflicts
+```
+git fetch origin
+git switch my-new-feature
+git merge master
+fix conflicts!!
+```
+
+* Switch to master. Merge in the feature branch (now with no conflicts). Push changes up to Github
+```
+git switch master
+git merge my-new-feature
+git push origin master
+```
+
+* **Deleting** the remote does **NOT** delete the local branch.
+
+**Fork & Clone** Instead of just one centralized Github repo, every developer has their own Github repo in addition to the "main" repo. Developers make changes and push to their own forks before making pull requests. (Commonly used on large open-source projects where there may be thousands of contributors with only a couple of maintainers)
+
+*Fork* When we fork a repo, we are basically asking Github "Make me an own copy of this repo". 
+
+So, the workflow would be as shown in the below steps:
+1. FORK the project
+2. Clone the Fork
+3. Add upstream remote
+4. Do some work
+5. Push to origin
+6. Open PR
+
+This workflow might be complicated, but it's common for a good reason. It allows project maintainers to accept contributions from developers all around the world without having to add them as actual owners of the main project repo or worry about giving them all permissions to push to the repo.
+
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
