@@ -301,6 +301,10 @@ There are two types of Git tags we can use:
 * **lightweight** tags are  lightweight. They are just a name/label that points to a particular commit
 * **annotated** tags store extra meta data including the author's name and email, date and a tagging message (like a commit message) 
 
+To create a lightweight tag, use `git tag <tagname>`. By default, Git will create the tag referring to the commit that HEAD is referencing.
+
+To create an annotate tage, use `git tag -a`. Git will open default text editor and prompt us for additional information. Similar to git commit, we can use the `-m` option to pass a message directly and forgo the opening of the text editor.
+
 **Semantic Versioning** spec outlines a standardized versioning system for software releases. It provides a consistent way for developers to give meaning to their software releases (how big of a change is this release?). Version consist of three numbers separated by periods.
 
 ```
@@ -324,16 +328,19 @@ We can search for tags that match a particular pattern by using `git tag -l` and
 
 ***Checking Out Tags*** To view the state of a repo at a particular tag, we can use `git checkout <tag>`. This puts us in detached HEAD!
 
+`git diff <tag1> <tag2>` compares the repo state in between the tags.
 
+`git show <tag>` provides information about a tag.
 
+We can tag older commits by providing a commit hash: 
+`git tag -a <tagname> <commit-hash>`
 
+Git will yell at us if we try to reuse a tag that is already referring to a commit. If we use the `-f` option, we can FORCE our tag through: `git tag -f <tagname> <commit-hash>`
 
+To delete a tag, use `git tag -d <tagname>`
 
-
-
-
-
-
+By default, `git push` command does not transfer tags to remote servers. If we want to push our tags at once, we can use the `--tags` option to the push command. This will transfer all our tags to the remote server that are not already there.
+`git push --tags`
 
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
