@@ -217,17 +217,17 @@ If we run `git pull` without specifying a particular remote or branch to pull fr
 
 * Switch to the branch in question. Merge in master and resolve the conflicts
 ```
-git fetch origin
-git switch my-new-feature
-git merge master
+> git fetch origin
+> git switch my-new-feature
+> git merge master
 fix conflicts!!
 ```
 
 * Switch to master. Merge in the feature branch (now with no conflicts). Push changes up to Github
 ```
-git switch master
-git merge my-new-feature
-git push origin master
+> git switch master
+> git merge my-new-feature
+> git push origin master
 ```
 
 * **Deleting** the remote does **NOT** delete the local branch.
@@ -246,5 +246,95 @@ So, the workflow would be as shown in the below steps:
 
 This workflow might be complicated, but it's common for a good reason. It allows project maintainers to accept contributions from developers all around the world without having to add them as actual owners of the main project repo or worry about giving them all permissions to push to the repo.
 
+### Rebasing
+
+There are two main ways to use the `git rebase` command:
+- as an alternative to merging
+- as a cleanup tool
+
+Instead of having a bunch of merge commits, we can instead rebase the feature branch onto the master branch. This moves the entire feature branch so that it BEGINS at the tip of the master branch. All of the work is still there, but we have **re-written history**
+
+Instead of using a merge commit which adds additional merge-commit information, rebasing re-writes history by **creating new commits** for each of the original feature branch commits.
+
+```
+> git switch feature
+> git rebase master
+```
+
+`git rebase master` would mean that we are re-basing the branch we are in onto the master branch
+
+**When to Rebase** 
+* We get a much cleaner project history
+* No unnecessary merge commits!
+* We end up with a linear project history
+
+**When NOT to Rebase** 
+
+Never rebase commits that have been shared with others. If you have already pushed commits up to Github, **DO NOT** rebase them unless you are positive no one on the team is using those commits
+
+After addressing the conflicts, and finishing up making the changes, we can run ` git rebase --continue `
+
+### Interactive Rebasing
+
+Running `git rebase` with the `-i` option will enter the interactive mode, which allows us to edit commits, add files, drop commits, etc. Note that we need to specify how far back we want to rewrite commits.
+
+```
+git rebase -i HEAD~4
+```
+
+Also, notice that we are not rebasing onto another branch. Instead, we are rebasing a series of commits onto the HEAD they are currently based on.
+
+In our text editor, we'll see a list of commits alongside a list of commands that we can choose from. Here are a couple of more commonly used commands:
+* pick - use the commit
+* reword - use the commit, but edit the commit message
+* edit - use commit, but stop for amending
+* fixup - use commit contents but meld it into previous commit and discard the commit message
+* drop - remove commit
+
+## Tags
+
+Tags are pointers that refer to particular points in Git history. We can mark a particular moment in time with a tag. Tags are most often used to mark vesion releases in projects (v4.1.0, v4.1.1, etc.)
+
+Think of tags as branch references that do not change. Once a tag is created, it always referes to the same commit. It is just a label for a commit.
+
+There are two types of Git tags we can use: 
+* **lightweight** tags are  lightweight. They are just a name/label that points to a particular commit
+* **annotated** tags store extra meta data including the author's name and email, date and a tagging message (like a commit message) 
+
+**Semantic Versioning** spec outlines a standardized versioning system for software releases. It provides a consistent way for developers to give meaning to their software releases (how big of a change is this release?). Version consist of three numbers separated by periods.
+
+```
+2.4.1 
+* 2 - MAJOR Release
+* 4 - MINOR Release
+* 1 - PATCH Release
+```
+
+Typically, the first release is 1.0.0
+
+**Patch Release** (0.0.1) normally does not contain new features or significant changes. They typically signify bug fixes and other changes that do not impact how the code is used
+
+**Minor Release** (1.1.0) signify that new features or functionality have been added, but the project is still backwards compatible. No breaking changes. The new functionality is optional and should not force users to rewrite their own code. Whenever there is a minor release, the patch release number gets reset to 0.
+
+**Major Release** signify significant changes that is no longer backwards compatible. Features may be removed or changed substantially. Whenever there is a major release, the minor and patch release numbers gets reset to 0.
+
+`git tag` will print a list of all the tags in the current repository. Type `q` to exit.
+
+We can search for tags that match a particular pattern by using `git tag -l` and then passing in a wildcard pattern. For example, `git tag -l "*beta*"` will print a list of tags that include "beta" in their name.
+
+***Checking Out Tags*** To view the state of a repo at a particular tag, we can use `git checkout <tag>`. This puts us in detached HEAD!
+
+
+
+
+
+
+
+
+
+
+
+
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
+* https://semver.org/
