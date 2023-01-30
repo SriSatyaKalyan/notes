@@ -342,6 +342,47 @@ To delete a tag, use `git tag -d <tagname>`
 By default, `git push` command does not transfer tags to remote servers. If we want to push our tags at once, we can use the `--tags` option to the push command. This will transfer all our tags to the remote server that are not already there.
 `git push --tags`
 
+### Config
+
+The config file is for  configuration. In this, we can configure things on a per-repo basis. 
+
+### Refs Folder
+
+Inside of refs, we will find a heads directory. **refs/heads** contains one file per branch in a repository. Each file is named after a branch and contains the hash of the commit at the tip of the branch. For example, **refs/heads/master** contains the commit hash of the last commit on the master branch. Refs also contains a **refs/tags** folder which contains one file for each tag in the repo.
+
+### HEAD
+
+HEAD is just a text file that keeps track of where HEAD points. If it contains *refs/heads/master*, this means that HEAD is pointing to the master branch
+
+In detached HEAD, the HEAD file contains a commit hash instead of a branch reference
+
+### Objects Folder
+
+The objects directory contains all the repo files. This is where Git stores the backups of files, the commits in a repo, and more. The files are all compressed and encrypted.
+
+#### Hashing
+Hashing functions map input data of some arbitrary size to fixed-size output values.
+
+### Blobs
+Git blobs (binary large objects) are the object type Git uses to store the **contents of files** in a given repo. Blobs don't even include the filenames of each file or any other data. They just store the contents of a file.
+
+### Trees
+Trees are Git objects used to store the contents of a directory. Each tree contains pointers that can refer to blobs and to other trees. Each entry in a tre contains the SHA-1 hash of a blob or tree, as well as the mode, type and filename
+
+### Commits
+Commit objects combine a tree object along with information about the context that led to the current tree. Commits store a reference to parent commit(s), the author, the commiter, and the commit message.
+
+When we run git commit, Git creates a new commit object whose parent is the **current HEAD commit** and whose tree is the current content of the index.
+
+`git cat-file -t <commit-hash>` gives us the object type the commit is referring to.
+
+`git cat-file -p <commit-hash>` gives us the pretty-printed version of the contents of the object the commit is referring to.
+
+### Annotated Tags
+Annotated tags contain metadata, commit message and pointers towards commits, which in turn reference towards trees, which in turn reference blobs
+
+## Reflogs
+
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
 * https://semver.org/
