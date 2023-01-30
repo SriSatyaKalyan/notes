@@ -405,6 +405,33 @@ git diff main@{0} main@{yesterday}
 ```
 We can sometimes use reflog entries to access commits that seem lost and are not appearing in git log
 
+## Git Aliases
+
+### Global Git Config
+
+Git looks for the global config file at either 
+* **~/.gitconfig** or 
+* **~/.config/git/config** 
+
+Any configuration variables that we change in the file will be applied across all Git repos. We can also alter configuration variables from the command line if preferred.
+
+### Adding Aliases
+We can easily setup Git aliases to make our Git experience a but simpler and faster. For ecxample, we could define an alias `git ci` instead of having to type `git commit`. Or, we could define a custome `git log` command that prints out a custom formatted commit log.
+
+After adding the below line to *.gitconfig* file,
+```
+[alias]
+    s = status
+```
+`git s` will act like `git status`
+
+We can also provide aliases with arguments.
+
+Provided links below which we can use to add better used aliases.
+
 ### Related links
 * https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
 * https://semver.org/
+* https://github.com/GitAlias/gitalias
+* https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+* https://gist.github.com/mwhite/6887990
